@@ -9,7 +9,7 @@ const projects = [
     title: "Zyler ERP Platform",
     description:
       "Scalable ERP handling 50L+ records monthly; CI/CD via GitHub + AWS.",
-    tech: ["React", "TypeScript", "Tailwind", "Node", "Django ORM", "MySQL", "AWS"],
+    tech: ["React", "TypeScript", "Tailwind", "Node", "Django", "MySQL", "AWS"],
     links: { github: "#", live: "#" },
   },
   {

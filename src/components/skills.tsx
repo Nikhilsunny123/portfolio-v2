@@ -21,6 +21,7 @@ const groups = [
     items: [
       { label: "Node.js", tip: "REST APIs handling high throughput." },
       { label: "Express.js", tip: "Robust routing and middleware." },
+      { label: "Django", tip: "REST APIs handling high throughput." },
       { label: "GraphQL", tip: "Typed queries across services." },
       { label: "WebSocket", tip: "Realtime dashboards and alerts." },
     ],
@@ -50,6 +51,7 @@ const groups = [
   {
     name: "Automation",
     items: [
+      { label: "N8N", tip: "Workflow automation and integrations." },
       { label: "Zapier", tip: "Workflow automation and integrations." },
     ],
   },

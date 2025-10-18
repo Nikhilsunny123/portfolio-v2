@@ -12,17 +12,17 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 export const metadata: Metadata = {
   title: "Nikhil Sunny — Full Stack Developer",
   description:
-    "Building scalable, modern web experiences with React, Node, and AWS.",
+    "Building scalable, modern web experiences with React, Node, Python and AWS.",
   metadataBase: new URL("https://example.com"),
   openGraph: {
     title: "Nikhil Sunny — Full Stack Developer",
     description:
-      "Building scalable, modern web experiences with React, Node, and AWS.",
+      "Building scalable, modern web experiences with React, Node, Python and AWS.",
     url: "https://example.com",
     siteName: "Nikhil Sunny Portfolio",
     images: [
       {
-        url: "/og.png",
+        url: "/ns.svg",
         width: 1200,
         height: 630,
         alt: "Nikhil Sunny Portfolio",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Nikhil Sunny — Full Stack Developer",
     description:
-      "Building scalable, modern web experiences with React, Node, and AWS.",
+      "Building scalable, modern web experiences with React, Node, Python and AWS.",
     images: ["/og.png"],
   },
 };

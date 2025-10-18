@@ -37,7 +37,7 @@ export default function HomePage() {
           transition={{ delay: 0.2 }}
           className="mt-4 max-w-2xl text-lg text-muted-foreground"
         >
-          Full Stack Developer — “Building scalable, modern web experiences with React, Node, and AWS.”
+          Full Stack Developer — “Building scalable, modern web experiences with React, Node, Python and AWS.”
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 8 }}
@@ -80,7 +80,7 @@ export default function HomePage() {
         <div className="col-span-2 space-y-3 rounded-2xl border bg-background/60 p-6">
           <h2 className="text-xl font-semibold tracking-tight">About</h2>
           <p className="text-muted-foreground">
-            Result-driven Full Stack Developer with 2.9+ years’ experience in building scalable web apps using React.js, Node.js, and AWS. Passionate about creating clean, optimized, and impactful digital products.
+            Result-driven Full Stack Developer with 3+ years’ experience in building scalable web apps using React.js, Node.js, and AWS. Passionate about creating clean, optimized, and impactful digital products.
           </p>
           <Button variant="outline" asChild>
             <a href="#" download>
@@ -118,7 +118,7 @@ export default function HomePage() {
           <ContactForm />
         </div>
         <div className="mt-6 text-sm text-muted-foreground">
-          Kochi, India • Email: nikhilsunny35@gmail.com • Phone: +91 9495536652
+          • Email: nikhilsunny35@gmail.com • Phone: +91 9495536652
         </div>
       </section>
     </div>

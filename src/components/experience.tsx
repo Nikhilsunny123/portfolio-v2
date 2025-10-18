@@ -6,7 +6,7 @@ import { Separator } from "@/components/ui/separator";
 const experiences = [
   {
     company: "Dietary Business Intelligence",
-    role: "Full Stack Developer",
+    role: "Software Engineer",
     dates: "Jul 2024 – Present",
     highlights: [
       "Designed scalable ERP platform for 1000+ users.",
