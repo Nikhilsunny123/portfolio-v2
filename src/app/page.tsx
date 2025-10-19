@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Github } from "lucide-react";
+import { Github, Linkedin, Twitter } from "lucide-react";
 import { TiltCard } from "@/components/tilt-card";
 import { SkillsGrid } from "@/components/skills";
 import { ExperienceTimeline } from "@/components/experience";
@@ -37,7 +37,8 @@ export default function HomePage() {
           transition={{ delay: 0.2 }}
           className="mt-4 max-w-2xl text-lg text-muted-foreground"
         >
-          Full Stack Developer — “Building scalable, modern web experiences with React, Node, Python and AWS.”
+          Full Stack Developer — “Building scalable, modern web experiences with
+          React, Node, Python and AWS.”
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 8 }}
@@ -64,9 +65,28 @@ export default function HomePage() {
             rel="noreferrer"
             className="inline-flex items-center gap-2 hover:text-primary"
           >
-            <Github className="h-4 w-4" /> GitHub
+            <Github className="h-4 w-4" />
           </a>
-          <a href="mailto:nikhilsunny35@gmail.com" className="hover:text-primary">
+          <a
+            href="https://x.com/NikhilSunny"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 hover:text-primary"
+          >
+            <Twitter className="h-4 w-4" />
+          </a>
+          <a
+            href="www.linkedin.com/in/nikhil-sunny-48195b125"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 hover:text-primary"
+          >
+            <Linkedin className="h-4 w-4" />
+          </a>
+          <a
+            href="mailto:nikhilsunny35@gmail.com"
+            className="hover:text-primary"
+          >
             nikhilsunny35@gmail.com
           </a>
           <a href="tel:+919495536652" className="hover:text-primary">
@@ -80,10 +100,18 @@ export default function HomePage() {
         <div className="col-span-2 space-y-3 rounded-2xl border bg-background/60 p-6">
           <h2 className="text-xl font-semibold tracking-tight">About</h2>
           <p className="text-muted-foreground">
-            Result-driven Full Stack Developer with 3+ years’ experience in building scalable web apps using React.js, Node.js, and AWS. Passionate about creating clean, optimized, and impactful digital products.
+            Result-driven Full Stack Developer with 3+ years’ experience in
+            building scalable web apps using React.js, Node.js, and AWS.
+            Passionate about creating clean, optimized, and impactful digital
+            products.
           </p>
           <Button variant="outline" asChild>
-            <a href="#" download>
+            <a
+              href={process.env.RESUME_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              download
+            >
               Download Resume
             </a>
           </Button>
@@ -98,22 +126,32 @@ export default function HomePage() {
       <ExperienceTimeline />
 
       {/* Education */}
-      <section id="education" className="mt-16 rounded-2xl border bg-background/60 p-6">
+      <section
+        id="education"
+        className="mt-16 rounded-2xl border bg-background/60 p-6"
+      >
         <h2 className="text-xl font-semibold tracking-tight">Education</h2>
         <ul className="mt-4 grid gap-3 text-sm text-muted-foreground">
           <li>
-            <span className="font-medium text-foreground">MCA</span> — St. Joseph’s Engineering College, Mangalore (2019)
+            <span className="font-medium text-foreground">MCA</span> — St.
+            Joseph’s Engineering College, Mangalore (2019)
           </li>
           <li>
-            <span className="font-medium text-foreground">BCA</span> — Srinivas Institute of Management Studies, Mangalore (2017)
+            <span className="font-medium text-foreground">BCA</span> — Srinivas
+            Institute of Management Studies, Mangalore (2017)
           </li>
         </ul>
       </section>
 
       {/* Contact placeholder */}
-      <section id="contact" className="mt-16 rounded-2xl border bg-background/60 p-6">
+      <section
+        id="contact"
+        className="mt-16 rounded-2xl border bg-background/60 p-6"
+      >
         <h2 className="text-xl font-semibold tracking-tight">Contact</h2>
-        <p className="mt-2 text-muted-foreground">Let's build something great together.</p>
+        <p className="mt-2 text-muted-foreground">
+          Let's build something great together.
+        </p>
         <div className="mt-6">
           <ContactForm />
         </div>
