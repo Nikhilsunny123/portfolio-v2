@@ -28,6 +28,10 @@ export function ChatWidget() {
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    setTimeout(() => setOpen(true), 2000);
+  }, []);
+
+  useEffect(() => {
     if (open) {
       // Seed a friendly greeting once when opening without duplicating
       if (messages.length === 0) {
@@ -35,7 +39,7 @@ export function ChatWidget() {
           {
             role: "assistant",
             content:
-              "Hi! I’m Nikhil’s AI assistant. Ask me about skills, projects, or experience.",
+              "Hi! I’m Nikhil’s AI assistant. Ask me about him.",
           },
         ]);
       }
@@ -43,7 +47,10 @@ export function ChatWidget() {
   }, [open]);
 
   useEffect(() => {
-    scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
+    scrollRef.current?.scrollTo({
+      top: scrollRef.current.scrollHeight,
+      behavior: "smooth",
+    });
   }, [messages, loading]);
 
   const handleSend = async () => {
@@ -72,7 +79,10 @@ export function ChatWidget() {
     } catch (e) {
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", content: "Sorry, I ran into a problem. Please try again." },
+        {
+          role: "assistant",
+          content: "Sorry, I ran into a problem. Please try again.",
+        },
       ]);
     } finally {
       setLoading(false);
@@ -114,7 +124,9 @@ export function ChatWidget() {
           "absolute bottom-16 right-0 w-[min(92vw,380px)] overflow-hidden rounded-xl border",
           "backdrop-blur supports-[backdrop-filter]:bg-background/70 bg-background/80",
           "shadow-2xl transition-all duration-300",
-          open ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 translate-y-4"
+          open
+            ? "opacity-100 translate-y-0"
+            : "pointer-events-none opacity-0 translate-y-4"
         )}
       >
         <div className="px-4 py-3 border-b flex items-center justify-between">
@@ -124,14 +136,32 @@ export function ChatWidget() {
             onClick={() => setOpen(false)}
             className="rounded p-1 text-muted-foreground hover:text-foreground hover:bg-accent"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
-              <path fillRule="evenodd" d="M6.225 4.811a1 1 0 011.414 0L12 9.172l4.361-4.361a1 1 0 111.414 1.414L13.414 10.586l4.361 4.361a1 1 0 01-1.414 1.414L12 12l-4.361 4.361a1 1 0 01-1.414-1.414l4.361-4.361-4.361-4.361a1 1 0 010-1.414z" clipRule="evenodd" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="h-5 w-5"
+            >
+              <path
+                fillRule="evenodd"
+                d="M6.225 4.811a1 1 0 011.414 0L12 9.172l4.361-4.361a1 1 0 111.414 1.414L13.414 10.586l4.361 4.361a1 1 0 01-1.414 1.414L12 12l-4.361 4.361a1 1 0 01-1.414-1.414l4.361-4.361-4.361-4.361a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              />
             </svg>
           </button>
         </div>
-        <div ref={scrollRef} className="max-h-[50vh] overflow-y-auto p-4 space-y-3">
+        <div
+          ref={scrollRef}
+          className="max-h-[50vh] overflow-y-auto p-4 space-y-3"
+        >
           {messages.map((m, idx) => (
-            <div key={idx} className={cn("flex", m.role === "user" ? "justify-end" : "justify-start")}> 
+            <div
+              key={idx}
+              className={cn(
+                "flex",
+                m.role === "user" ? "justify-end" : "justify-start"
+              )}
+            >
               <div
                 className={cn(
                   "px-3 py-2 rounded-2xl text-sm max-w-[80%]",
@@ -161,7 +191,9 @@ export function ChatWidget() {
               placeholder="Ask about skills, projects, experience..."
               rows={2}
             />
-            <Button onClick={handleSend} disabled={loading || !input.trim()}>Send</Button>
+            <Button onClick={handleSend} disabled={loading || !input.trim()}>
+              Send
+            </Button>
           </div>
         </div>
       </div>
