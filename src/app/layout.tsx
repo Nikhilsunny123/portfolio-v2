@@ -37,7 +37,12 @@ export const metadata: Metadata = {
     title: "Nikhil Sunny — Full Stack Developer",
     description:
       "Building scalable, modern web experiences with React, Node, Python and AWS.",
-    images: ["/og.png"],
+    images: ["/favicon.png"],
+  },
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
   },
 };
 
@@ -48,22 +53,34 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} min-h-screen bg-gradient-to-b from-background to-background/80`}>
+      <body
+        className={`${inter.variable} min-h-screen bg-gradient-to-b from-background to-background/80`}
+      >
         <Providers>
           <ParticlesBackground />
           <div className="fixed inset-x-0 top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
             <nav className="container mx-auto flex h-14 items-center justify-between px-4">
-              <a href="#" className="font-semibold tracking-tight">NS</a>
+              <a href="#" className="font-semibold tracking-tight">
+                NS
+              </a>
               <div className="flex items-center gap-6 text-sm">
-                <a href="#projects" className="hover:text-primary">Projects</a>
-                <a href="#experience" className="hover:text-primary">Experience</a>
-                <a href="#contact" className="hover:text-primary">Contact</a>
+                <a href="#projects" className="hover:text-primary">
+                  Projects
+                </a>
+                <a href="#experience" className="hover:text-primary">
+                  Experience
+                </a>
+                <a href="#contact" className="hover:text-primary">
+                  Contact
+                </a>
                 <ThemeToggle />
               </div>
             </nav>
           </div>
           <MotionTransition>
-            <main className="container mx-auto px-4 pt-24 pb-12">{children}</main>
+            <main className="container mx-auto px-4 pt-24 pb-12">
+              {children}
+            </main>
           </MotionTransition>
           <ScrollToTop />
           <ChatWidget />
