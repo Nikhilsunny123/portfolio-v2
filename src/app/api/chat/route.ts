@@ -1,4 +1,4 @@
-import OpenAI from "openai";
+import { NextResponse } from "next/server";
 
 export const runtime = "nodejs";
 
@@ -26,36 +26,44 @@ export async function POST(req: Request) {
   try {
     const { messages } = (await req.json()) as { messages?: ChatMessage[] };
 
-    const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-    if (!openai.apiKey) {
-      return new Response(
-        JSON.stringify({ error: "Missing OPENAI_API_KEY on server" }),
-        { status: 500, headers: { "content-type": "application/json" } }
+    const apiKey = process.env.OPENROUTER_API_KEY;
+    if (!apiKey) {
+      return NextResponse.json(
+        { error: "Missing OPENROUTER_API_KEY on server" },
+        { status: 500 }
       );
     }
 
-    const chatMessages: ChatMessage[] = [
-      { role: "system", content: SYSTEM_PROMPT },
-      ...(messages ?? []).slice(-12),
-    ];
-
-    const completion = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
-      messages: chatMessages,
-      temperature: 0.7,
+    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${apiKey}`,
+        "HTTP-Referer": "https://your-portfolio-site.com", // optional for ranking
+        "X-Title": "Nikhil Portfolio AI Chatbot",
+      },
+      body: JSON.stringify({
+        model: "openai/gpt-oss-20b:free", // You can also try ""
+        messages: [
+          { role: "system", content: SYSTEM_PROMPT },
+          ...(messages ?? []).slice(-12),
+        ],
+        temperature: 0.7,
+      }),
     });
+    if (!response.ok) throw new Error("OpenRouter API request failed");
 
-    const reply = completion.choices?.[0]?.message?.content?.trim() ?? "";
+    const data = await response.json();
+    const reply = data?.choices?.[0]?.message?.content?.trim() ?? "";
 
-    return new Response(
-      JSON.stringify({ message: { role: "assistant", content: reply } }),
-      { status: 200, headers: { "content-type": "application/json" } }
-    );
-  } catch (error: any) {
+    return NextResponse.json({
+      message: { role: "assistant", content: reply },
+    });
+  } catch (error) {
     console.error("/api/chat error", error);
-    return new Response(
-      JSON.stringify({ error: "Failed to fetch response from OpenAI" }),
-      { status: 500, headers: { "content-type": "application/json" } }
+    return NextResponse.json(
+      { error: "Failed to fetch response from OpenRouter" },
+      { status: 500 }
     );
   }
 }
