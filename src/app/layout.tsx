@@ -6,6 +6,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { MotionTransition } from "@/components/motion-transition";
 import { ParticlesBackground } from "@/components/visuals/particles";
 import { ScrollToTop } from "@/components/scroll-to-top";
+import { ChatWidget } from "@/components/chat/ChatWidget";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -65,6 +66,7 @@ export default function RootLayout({
             <main className="container mx-auto px-4 pt-24 pb-12">{children}</main>
           </MotionTransition>
           <ScrollToTop />
+          <ChatWidget />
         </Providers>
       </body>
     </html>
