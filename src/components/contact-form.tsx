@@ -54,8 +54,8 @@ export function ContactForm() {
         <Textarea name="message" required placeholder="How can I help?" className="mt-1" />
       </div>
       <input type="hidden" name="_captcha" value="false" />
-      <div className="md:col-span-2 flex items-center gap-3">
-        <Button type="submit" disabled={sending}>
+      <div className="md:col-span-2 flex flex-col sm:flex-row sm:items-center gap-3">
+        <Button type="submit" disabled={sending} className="w-full sm:w-auto h-11 sm:h-10">
           {sending ? "Sending…" : sent ? "Sent!" : "Send Message"}
         </Button>
         <div className="text-xs text-muted-foreground">I will get back within 24 hours.</div>
