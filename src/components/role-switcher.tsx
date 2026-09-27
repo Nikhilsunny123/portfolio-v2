@@ -16,7 +16,7 @@ export function RoleSwitcher() {
   const { activeRole, setActiveRole } = useRole();
 
   return (
-    <div className="flex items-center gap-1 sm:gap-2 p-1.5 bg-background/80 backdrop-blur-md rounded-full border shadow-sm">
+    <div className="flex max-w-full overflow-x-auto scrollbar-none items-center gap-1 sm:gap-2 p-1 sm:p-1.5 bg-background/80 backdrop-blur-md rounded-full border shadow-sm">
       <span className="hidden md:inline-flex items-center text-xs font-semibold text-muted-foreground pl-3 pr-1">
         Focus:
       </span>
@@ -28,7 +28,7 @@ export function RoleSwitcher() {
             key={role.id}
             onClick={() => setActiveRole(role.id)}
             className={cn(
-              "relative flex items-center gap-1.5 px-3 py-1.5 text-xs sm:text-sm font-medium rounded-full transition-all duration-200",
+              "relative flex shrink-0 items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-medium rounded-full transition-all duration-200",
               isActive ? "text-primary font-semibold" : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
             )}
           >
@@ -39,7 +39,7 @@ export function RoleSwitcher() {
                 transition={{ type: "spring", stiffness: 350, damping: 30 }}
               />
             )}
-            <Icon className={cn("h-3.5 w-3.5", isActive ? "text-primary animate-pulse" : "text-muted-foreground")} />
+            <Icon className={cn("h-3.5 w-3.5", isActive ? "text-primary" : "text-muted-foreground")} />
             <span className="hidden sm:inline">{role.label}</span>
             <span className="sm:hidden">{role.shortLabel}</span>
           </button>

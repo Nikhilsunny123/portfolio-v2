@@ -28,18 +28,18 @@ export function ResumeHub() {
     <div className="rounded-2xl border border-white/10 bg-background/40 backdrop-blur-md overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] flex flex-col justify-between group">
       <div>
         {/* Header bar */}
-        <div className="border-b border-white/10 p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-black/40">
+        <div className="border-b border-white/10 p-4 sm:p-6 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 bg-black/40">
           <div>
             <div className="flex items-center gap-2 font-mono text-[10px] tracking-widest text-primary/80 uppercase mb-2">
-              <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse" />
+              <span className="flex h-2 w-2 rounded-full bg-primary" />
               Engineering Dossier // {activeResume.role}
             </div>
-            <h3 className="font-extrabold text-2xl tracking-tight text-white/90">{activeResume.title}</h3>
-            <p className="text-xs text-muted-foreground/70 font-mono mt-1">
+            <h3 className="font-extrabold text-xl sm:text-2xl tracking-tight text-white/90">{activeResume.title}</h3>
+            <p className="text-[11px] sm:text-xs text-muted-foreground/70 font-mono mt-1">
               FILE: {activeResume.fileName} [ENCRYPTED: NO]
             </p>
           </div>
-          <Button asChild variant="outline" className="shrink-0 border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground group transition-all rounded-full h-10 px-6">
+          <Button asChild variant="outline" className="w-full sm:w-auto shrink-0 border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground group transition-all rounded-full h-10 px-5 sm:px-6">
             <a href={`/resumes/${activeResume.fileName}`} download>
               <Download className="mr-2 h-4 w-4 group-hover:-translate-y-1 transition-transform" />
               Download Dossier
@@ -48,25 +48,25 @@ export function ResumeHub() {
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex border-b border-white/5 bg-black/20">
+        <div className="flex border-b border-white/5 bg-black/20 overflow-x-auto scrollbar-none">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex-1 flex items-center justify-center gap-2 py-4 px-2 text-xs sm:text-sm font-semibold tracking-wide uppercase transition-all duration-300 ${
+              className={`flex-1 flex items-center justify-center gap-1.5 sm:gap-2 py-3 sm:py-4 px-1 sm:px-2 text-[11px] sm:text-xs md:text-sm font-semibold tracking-wide uppercase transition-all duration-300 ${
                 activeTab === tab.id
                   ? "text-primary border-b-2 border-primary bg-primary/5"
                   : "text-muted-foreground hover:text-white hover:bg-white/5"
               }`}
             >
-              <tab.icon className="h-4 w-4 shrink-0 opacity-70" />
+              <tab.icon className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0 opacity-70" />
               <span>{tab.label}</span>
             </button>
           ))}
         </div>
 
         {/* Tab Content */}
-        <div className="p-6 relative min-h-[260px]">
+        <div className="p-4 sm:p-6 relative min-h-[260px]">
           <AnimatePresence mode="wait">
             {activeTab === "summary" && (
               <motion.div
@@ -159,7 +159,7 @@ export function ResumeHub() {
       </div>
 
       {/* Footer hint */}
-      <div className="border-t border-white/5 px-6 py-4 bg-black/60 text-xs font-mono text-muted-foreground flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div className="border-t border-white/5 px-4 sm:px-6 py-3 sm:py-4 bg-black/60 text-[11px] sm:text-xs font-mono text-muted-foreground flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 sm:gap-3">
         <span>&gt; Switch roles for varied dossier views</span>
         <a
           href={`/resumes/${activeResume.fileName}`}

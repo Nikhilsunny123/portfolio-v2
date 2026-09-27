@@ -81,16 +81,16 @@ export function SkillsGrid() {
   const highlighted = roleHighlightedGroups[activeRole] || [];
 
   return (
-    <section id="skills" className="mt-16 space-y-6 rounded-2xl border bg-background/60 p-6">
+    <section id="skills" className="mt-16 space-y-5 sm:space-y-6 rounded-2xl border bg-background/60 p-4 sm:p-6">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-        <h2 className="text-xl font-semibold tracking-tight">Skills & Tech Stack</h2>
-        <span className="text-xs text-muted-foreground flex items-center gap-1.5">
-          <Sparkles className="h-3 w-3 text-primary" />
+        <h2 className="text-lg sm:text-xl font-semibold tracking-tight">Skills & Tech Stack</h2>
+        <span className="text-[11px] sm:text-xs text-muted-foreground flex items-center gap-1.5">
+          <Sparkles className="h-3 w-3 text-primary shrink-0" />
           Highlighted based on current role focus
         </span>
       </div>
       <TooltipProvider delayDuration={100}>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
           {groups.map((group) => {
             const isHighlighted = highlighted.includes(group.name);
             return (
@@ -100,7 +100,7 @@ export function SkillsGrid() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.4 }}
-                className={`rounded-xl border p-4 transition-all duration-300 ${
+                className={`rounded-xl border p-3.5 sm:p-4 transition-all duration-300 ${
                   isHighlighted
                     ? "border-primary/60 bg-primary/[0.03] ring-1 ring-primary/25 shadow-sm"
                     : "bg-background/50 hover:border-muted-foreground/30"

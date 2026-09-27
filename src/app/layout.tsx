@@ -5,6 +5,9 @@ import { Providers } from "./providers";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { MotionTransition } from "@/components/motion-transition";
 import { MatterCanvas } from "@/components/visuals/MatterCanvas";
+import { NoiseOverlay } from "@/components/visuals/NoiseOverlay";
+import { CustomCursor } from "@/components/visuals/CustomCursor";
+import { PageTransition } from "@/components/visuals/PageTransition";
 import { ScrollToTop } from "@/components/scroll-to-top";
 import { ChatWidget } from "@/components/chat/ChatWidget";
 
@@ -57,20 +60,23 @@ export default function RootLayout({
         className={`${inter.variable} min-h-screen bg-gradient-to-b from-background to-background/80`}
       >
         <Providers>
+          <NoiseOverlay />
+          <CustomCursor />
+          <PageTransition />
           <MatterCanvas />
           <div className="fixed inset-x-0 top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
-            <nav className="container mx-auto flex h-14 items-center justify-between px-4">
-              <a href="#" className="font-semibold tracking-tight">
+            <nav className="container mx-auto flex h-14 items-center justify-between px-3 sm:px-4">
+              <a href="#" className="font-semibold tracking-tight text-sm sm:text-base">
                 NS
               </a>
-              <div className="flex items-center gap-6 text-sm">
-                <a href="#projects" className="hover:text-primary">
+              <div className="flex items-center gap-3 sm:gap-6 text-xs sm:text-sm">
+                <a href="#projects" className="hover:text-primary transition-colors">
                   Projects
                 </a>
-                <a href="#experience" className="hover:text-primary">
+                <a href="#experience" className="hover:text-primary transition-colors">
                   Experience
                 </a>
-                <a href="#contact" className="hover:text-primary">
+                <a href="#contact" className="hover:text-primary transition-colors">
                   Contact
                 </a>
                 <ThemeToggle />
@@ -78,7 +84,7 @@ export default function RootLayout({
             </nav>
           </div>
           <MotionTransition>
-            <main className="container mx-auto px-4 pt-24 pb-12">
+            <main className="container mx-auto px-3 sm:px-4 pt-20 sm:pt-24 pb-12 overflow-x-hidden">
               {children}
             </main>
           </MotionTransition>
