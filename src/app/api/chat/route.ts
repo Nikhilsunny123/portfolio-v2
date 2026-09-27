@@ -27,7 +27,7 @@ export async function POST(req: Request) {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${apiKey}`,
-          "HTTP-Referer": "https://your-portfolio-site.com", // optional for ranking
+          "HTTP-Referer": "https://nikhilportfolio.vercel.app/", 
           "X-Title": "Nikhil Portfolio AI Chatbot",
         },
         body: JSON.stringify({

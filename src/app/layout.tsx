@@ -4,7 +4,7 @@ import { Inter } from "next/font/google";
 import { Providers } from "./providers";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { MotionTransition } from "@/components/motion-transition";
-import { ParticlesBackground } from "@/components/visuals/particles";
+import { MatterCanvas } from "@/components/visuals/MatterCanvas";
 import { ScrollToTop } from "@/components/scroll-to-top";
 import { ChatWidget } from "@/components/chat/ChatWidget";
 
@@ -57,7 +57,7 @@ export default function RootLayout({
         className={`${inter.variable} min-h-screen bg-gradient-to-b from-background to-background/80`}
       >
         <Providers>
-          <ParticlesBackground />
+          <MatterCanvas />
           <div className="fixed inset-x-0 top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
             <nav className="container mx-auto flex h-14 items-center justify-between px-4">
               <a href="#" className="font-semibold tracking-tight">
