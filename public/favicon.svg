@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="bgGlow" cx="50%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#180c05" />
+      <stop offset="60%" stop-color="#0a0605" />
+      <stop offset="100%" stop-color="#050505" />
+    </radialGradient>
+
+    <!-- Outer Corona Glow -->
+    <radialGradient id="coronaGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFB067" stop-opacity="1" />
+      <stop offset="35%" stop-color="#FF8A3D" stop-opacity="0.85" />
+      <stop offset="70%" stop-color="#FF5722" stop-opacity="0.35" />
+      <stop offset="100%" stop-color="#FF8A3D" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Eclipse Rim Flare -->
+    <linearGradient id="rimFlare" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF3E0" />
+      <stop offset="30%" stop-color="#FFB067" />
+      <stop offset="70%" stop-color="#FF8A3D" />
+      <stop offset="100%" stop-color="#FF5722" />
+    </linearGradient>
+
+    <!-- Mountain Rim Highlight -->
+    <linearGradient id="mountainRim" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF8A3D" stop-opacity="0.3" />
+      <stop offset="50%" stop-color="#FFB067" stop-opacity="0.95" />
+      <stop offset="100%" stop-color="#FF8A3D" stop-opacity="0.3" />
+    </linearGradient>
+
+    <!-- Clip Path for rounded square / squircle app icon -->
+    <clipPath id="appIconClip">
+      <rect x="0" y="0" width="64" height="64" rx="14" />
+    </clipPath>
+
+    <!-- Soft Glow Filter -->
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <g clip-path="url(#appIconClip)">
+    <!-- Base Background -->
+    <rect width="64" height="64" fill="url(#bgGlow)" />
+    <!-- Fine Border -->
+    <rect width="64" height="64" fill="none" stroke="#FF8A3D" stroke-opacity="0.3" stroke-width="1.5" rx="14" />
+
+    <!-- Corona Ambient Halo -->
+    <circle cx="32" cy="24" r="22" fill="url(#coronaGlow)" filter="url(#softGlow)" />
+
+    <!-- Sharp Glowing Eclipse Rim -->
+    <circle cx="32" cy="24" r="13.5" fill="none" stroke="url(#rimFlare)" stroke-width="2.5" filter="url(#softGlow)" />
+
+    <!-- Dark Moon Disc (The Eclipse Center) -->
+    <circle cx="31.2" cy="24.8" r="12.8" fill="#080606" />
+
+    <!-- Lens Sparkle Flare on Rim -->
+    <circle cx="23" cy="15" r="1.5" fill="#FFF8E7" />
+    <path d="M 23 11 L 23 19 M 19 15 L 27 15" stroke="#FFE0B2" stroke-width="0.8" stroke-linecap="round" />
+
+    <!-- Mountain Silhouettes -->
+    <!-- Far Mountain -->
+    <path d="M 0 54 L 16 38 L 30 50 L 46 36 L 64 50 L 64 64 L 0 64 Z" fill="#0D0907" />
+    <!-- Main Center Mountain Peak with Rim Light -->
+    <path d="M 8 64 L 32 37 L 56 64 Z" fill="#070505" />
+    <!-- Mountain Edge Stroke Glow -->
+    <path d="M 8 64 L 32 37 L 56 64" fill="none" stroke="url(#mountainRim)" stroke-width="1.2" />
+
+    <!-- Foreground Mountain Ridge -->
+    <path d="M 0 58 L 20 48 L 44 60 L 64 52 L 64 64 L 0 64 Z" fill="#040303" />
+  </g>
+</svg>

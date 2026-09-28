@@ -10,6 +10,10 @@ const config: Config = {
   theme: {
   	extend: {
   		colors: {
+  			'accent-orange': '#FF8A3D',
+  			'accent-orange-light': '#FFB067',
+  			'surface-black': '#050505',
+  			'surface-charcoal': '#0B0B0B',
   			'brand-blue': '#0B3C5D',
   			'brand-cyan': '#00E5FF',
   			background: 'hsl(var(--background))',

@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { Providers } from "./providers";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { MotionTransition } from "@/components/motion-transition";
-import { MatterCanvas } from "@/components/visuals/MatterCanvas";
+import { CinematicBackground } from "@/components/visuals/CinematicBackground";
 import { NoiseOverlay } from "@/components/visuals/NoiseOverlay";
 import { CustomCursor } from "@/components/visuals/CustomCursor";
 import { PageTransition } from "@/components/visuals/PageTransition";
 import { ScrollToTop } from "@/components/scroll-to-top";
+import { ScrollProgress } from "@/components/ui/ScrollProgress";
+import { Navbar } from "@/components/Navbar";
 import { ChatWidget } from "@/components/chat/ChatWidget";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -16,17 +16,17 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 export const metadata: Metadata = {
   title: "Nikhil Sunny — Full Stack Developer",
   description:
-    "Building scalable, modern web experiences with React, Node, Python and AWS.",
+    "Building scalable, modern web applications, AI-powered systems and cloud automations.",
   metadataBase: new URL("https://example.com"),
   openGraph: {
     title: "Nikhil Sunny — Full Stack Developer",
     description:
-      "Building scalable, modern web experiences with React, Node, Python and AWS.",
+      "Building scalable, modern web applications, AI-powered systems and cloud automations.",
     url: "https://example.com",
     siteName: "Nikhil Sunny Portfolio",
     images: [
       {
-        url: "/ns.svg",
+        url: "/images/cinematic-eclipse.jpg",
         width: 1200,
         height: 630,
         alt: "Nikhil Sunny Portfolio",
@@ -39,13 +39,16 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Nikhil Sunny — Full Stack Developer",
     description:
-      "Building scalable, modern web experiences with React, Node, Python and AWS.",
-    images: ["/favicon.png"],
+      "Building scalable, modern web applications, AI-powered systems and cloud automations.",
+    images: ["/images/cinematic-eclipse.jpg"],
   },
   icons: {
-    icon: "/favicon.png",
-    shortcut: "/favicon.png",
-    apple: "/favicon.png",
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.png", type: "image/png" },
+    ],
+    shortcut: "/favicon.svg",
+    apple: "/apple-touch-icon.png",
   },
 };
 
@@ -55,39 +58,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark" suppressHydrationWarning>
       <body
-        className={`${inter.variable} min-h-screen bg-gradient-to-b from-background to-background/80`}
+        className={`${inter.variable} min-h-screen bg-[#050505] text-[#F5F5F5] antialiased selection:bg-[#FF8A3D]/30 selection:text-[#FFB067] overflow-x-hidden font-sans`}
       >
         <Providers>
+          <ScrollProgress />
           <NoiseOverlay />
           <CustomCursor />
           <PageTransition />
-          <MatterCanvas />
-          <div className="fixed inset-x-0 top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
-            <nav className="container mx-auto flex h-14 items-center justify-between px-3 sm:px-4">
-              <a href="#" className="font-semibold tracking-tight text-sm sm:text-base">
-                NS
-              </a>
-              <div className="flex items-center gap-3 sm:gap-6 text-xs sm:text-sm">
-                <a href="#projects" className="hover:text-primary transition-colors">
-                  Projects
-                </a>
-                <a href="#experience" className="hover:text-primary transition-colors">
-                  Experience
-                </a>
-                <a href="#contact" className="hover:text-primary transition-colors">
-                  Contact
-                </a>
-                <ThemeToggle />
-              </div>
-            </nav>
-          </div>
-          <MotionTransition>
-            <main className="container mx-auto px-3 sm:px-4 pt-20 sm:pt-24 pb-12 overflow-x-hidden">
-              {children}
-            </main>
-          </MotionTransition>
+          <CinematicBackground />
+          <Navbar />
+          <main className="relative z-10 overflow-x-hidden">
+            {children}
+          </main>
           <ScrollToTop />
           <ChatWidget />
         </Providers>

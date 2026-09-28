@@ -32,10 +32,10 @@ export function PageTransition() {
           }}
           style={{ transformOrigin: "bottom" }}
           onAnimationComplete={() => setIsVisible(false)}
-          className="pointer-events-none fixed inset-0 z-[100] bg-[#050506]"
+          className="pointer-events-none fixed inset-0 z-[100] bg-[#030508]"
         >
           {/* Subtle luminous edge at the wipe boundary */}
-          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent" />
         </motion.div>
       )}
     </AnimatePresence>

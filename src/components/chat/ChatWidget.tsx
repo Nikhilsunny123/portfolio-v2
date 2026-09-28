@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { Bot, X, Send, RotateCcw, Sparkles, User, MessageSquare } from "lucide-react";
+import { sound } from "@/lib/sound";
 
 export type ChatMessage = {
   role: "user" | "assistant";
@@ -87,7 +88,7 @@ export function ChatWidget() {
         ...prev,
         {
           role: "assistant",
-          content: "Nikhil is a Full Stack & AI Engineer with 3.3+ years experience across RAG, Node.js, React, and AWS. You can also contact him directly at nikhilsunny35@gmail.com.",
+          content: "Nikhil is a Full Stack & AI Systems Engineer specializing in RAG architectures, real-time distributed systems, Node.js, React, and AWS. You can also reach him directly at nikhilsunny35@gmail.com.",
         },
       ]);
     } finally {
@@ -95,7 +96,10 @@ export function ChatWidget() {
     }
   };
 
-  const handleSend = () => sendMessage(input);
+  const handleSend = () => {
+    sound.playClick();
+    sendMessage(input);
+  };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -105,6 +109,7 @@ export function ChatWidget() {
   };
 
   const resetChat = () => {
+    sound.playClick();
     setMessages([INITIAL_MESSAGE]);
   };
 
@@ -113,14 +118,18 @@ export function ChatWidget() {
       {/* Floating Trigger Button (Clean, NO blinking pulse) */}
       <motion.button
         aria-label={open ? "Close chat" : "Open AI Assistant"}
-        onClick={() => setOpen((prev) => !prev)}
+        onClick={() => {
+          sound.playClick();
+          setOpen((prev) => !prev);
+        }}
+        onMouseEnter={() => sound.playHover()}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         className={cn(
           "relative flex items-center gap-2.5 px-3.5 sm:px-4 h-11 sm:h-12 rounded-full border shadow-2xl transition-all duration-300",
           open
             ? "bg-muted/80 text-foreground border-white/20"
-            : "bg-[#090b10]/90 hover:bg-[#0f131c] text-white border-white/15 hover:border-primary/50 backdrop-blur-xl"
+            : "bg-[#0B0B0B]/90 hover:bg-[#121212] text-white border-white/15 hover:border-primary/50 backdrop-blur-xl"
         )}
       >
         <span className="relative flex h-2.5 w-2.5">
@@ -144,7 +153,7 @@ export function ChatWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 15, scale: 0.96 }}
             transition={{ type: "spring", stiffness: 320, damping: 32, mass: 0.8 }}
-            className="absolute bottom-14 sm:bottom-16 right-0 w-[calc(100vw-2rem)] sm:w-[390px] max-w-[390px] h-[min(520px,78vh)] flex flex-col rounded-2xl border border-white/[0.08] bg-[#090b10]/95 backdrop-blur-2xl shadow-[0_20px_60px_rgba(0,0,0,0.85)] overflow-hidden"
+            className="absolute bottom-14 sm:bottom-16 right-0 w-[calc(100vw-2rem)] sm:w-[390px] max-w-[390px] h-[min(520px,78vh)] flex flex-col rounded-2xl border border-white/[0.08] bg-[#0B0B0B]/95 backdrop-blur-2xl shadow-[0_20px_60px_rgba(0,0,0,0.85)] overflow-hidden"
           >
             {/* Header */}
             <div className="p-4 border-b border-white/[0.04] flex items-center justify-between bg-black/20">
