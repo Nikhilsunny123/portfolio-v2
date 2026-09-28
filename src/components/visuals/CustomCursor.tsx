@@ -1,24 +1,25 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { motion, useSpring, useMotionValue } from "framer-motion";
 
 export function CustomCursor() {
   const [enabled, setEnabled] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [isProjectCard, setIsProjectCard] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
-  // Position motion values
+  // High-frequency pointer motion values
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
 
-  // Smooth lagging springs for outer ring
-  const springConfig = { damping: 25, stiffness: 250, mass: 0.5 };
+  // Smooth physics spring for outer cursor aura
+  const springConfig = { damping: 26, stiffness: 280, mass: 0.4 };
   const smoothX = useSpring(mouseX, springConfig);
   const smoothY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
-    // Only enable on non-touch devices with fine pointer and no reduced-motion preference
+    // Only enable on desktop with fine pointer and no reduced motion
     const isFinePointer = window.matchMedia("(pointer: fine)").matches;
     const isReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -33,11 +34,12 @@ export function CustomCursor() {
       mouseY.set(e.clientY);
       if (!isVisible) setIsVisible(true);
 
-      // Check if hovering over clickable elements
       const target = e.target as HTMLElement | null;
       if (target) {
         const isClickable = !!target.closest("button, a, [data-magnetic], [data-cursor='pointer'], input, textarea");
-        setIsHovered(isClickable);
+        const isProj = !!target.closest("[data-project-card='true']");
+        setIsHovered(isClickable || isProj);
+        setIsProjectCard(isProj);
       }
     };
 
@@ -58,8 +60,8 @@ export function CustomCursor() {
   if (!enabled) return null;
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-[9999] overflow-hidden">
-      {/* Outer Lagging Aura Ring */}
+    <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-[9999] overflow-hidden select-none">
+      {/* Outer subtle orange aura ring */}
       <motion.div
         style={{
           x: smoothX,
@@ -68,18 +70,28 @@ export function CustomCursor() {
           translateY: "-50%",
         }}
         animate={{
-          scale: isHovered ? 1.8 : 1,
-          opacity: isVisible ? (isHovered ? 0.9 : 0.6) : 0,
+          scale: isProjectCard ? 2.4 : isHovered ? 1.6 : 1,
+          opacity: isVisible ? (isHovered ? 0.95 : 0.4) : 0,
         }}
-        transition={{ duration: 0.2 }}
-        className={`h-9 w-9 rounded-full border transition-colors duration-200 ${
+        transition={{ duration: 0.18 }}
+        className={`h-8 w-8 rounded-full border flex items-center justify-center transition-colors duration-200 ${
           isHovered
-            ? "border-primary/80 bg-primary/10 backdrop-blur-[1px] shadow-[0_0_15px_rgba(0,229,255,0.35)]"
-            : "border-white/30"
+            ? "border-[#FF8A3D] bg-[#FF8A3D]/15 shadow-[0_0_20px_rgba(255,138,61,0.4)] backdrop-blur-[1px]"
+            : "border-white/20 bg-transparent"
         }`}
-      />
+      >
+        {isProjectCard && (
+          <motion.span
+            initial={{ opacity: 0, scale: 0.6 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="text-[7px] font-mono font-bold text-[#FF8A3D] tracking-widest uppercase"
+          >
+            VIEW
+          </motion.span>
+        )}
+      </motion.div>
 
-      {/* Inner Pin-Point Center Dot */}
+      {/* Inner pinpoint dot */}
       <motion.div
         style={{
           x: mouseX,
@@ -88,11 +100,11 @@ export function CustomCursor() {
           translateY: "-50%",
         }}
         animate={{
-          scale: isHovered ? 0.4 : 1,
+          scale: isHovered ? 0.5 : 1,
           opacity: isVisible ? 1 : 0,
         }}
-        transition={{ duration: 0.15 }}
-        className="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_6px_var(--primary)]"
+        transition={{ duration: 0.12 }}
+        className="h-1.5 w-1.5 rounded-full bg-[#FF8A3D] shadow-[0_0_8px_#FF8A3D]"
       />
     </div>
   );
